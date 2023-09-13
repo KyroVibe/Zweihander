@@ -3,7 +3,7 @@
 namespace TestBench {
     public class Program {
         public static void Main(string[] args) {
-            Zweihander.test(555);
+            Zweihander.rapier_example();
         }
     }
 }

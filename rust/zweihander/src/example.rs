@@ -12,7 +12,7 @@ pub fn rapier_example() {
     let rigid_body = RigidBodyBuilder::dynamic()
         .translation(vector![0.0, 10.0, 0.0])
         .build();
-    let collider = ColliderBuilder::ball(0.5).restitution(0.7).build();
+    let collider = ColliderBuilder::ball(0.5).restitution(1.5).build();
     let ball_body_handle = rigid_body_set.insert(rigid_body);
     collider_set.insert_with_parent(collider, ball_body_handle, &mut rigid_body_set);
 

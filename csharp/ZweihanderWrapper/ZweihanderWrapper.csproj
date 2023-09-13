@@ -5,9 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\..\rust\zweihander\target\debug\zweihander.dll" Link="zweihander.dll">
+    <EmbeddedResource Include="..\..\rust\zweihander\target\debug\zweihander.dll" Link="zweihander.dll" Condition=" '$(OS)' == 'Windows_NT' ">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\rust\zweihander\target\debug\zweihander.so" Link="zweihander.so" Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' ">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\rust\zweihander\target\debug\libzweihander.dylib" Link="libzweihander.dylib" Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' ">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+
+  <PropertyGroup>
+    <DefineConstants Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' ">$(DefineConstants);MACOS</DefineConstants>
+  </PropertyGroup>
 
 </Project>
